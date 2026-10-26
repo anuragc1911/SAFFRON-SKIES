@@ -414,12 +414,12 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 @media (max-width:760px){
   .nav{top:14px;gap:16px;padding-left:14px}
   .brand img{height:26px}
-  .hero{height:100svh;min-height:580px}
-  .hero-copy{top:19%}
-  .hero-media{height:62%;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%);mask-image:linear-gradient(to bottom,transparent 0,#000 14%)}
-  .hero-media video{object-position:38% 100%;transform:scale(1.12);transform-origin:50% 100%}
-  .cloud-l{width:70vw;left:-18vw;top:6%}
-  .cloud-r{width:66vw;right:-20vw;top:10%}
+  .hero{height:100svh;min-height:580px;display:grid;grid-template-rows:auto 1fr}
+  .hero-copy{position:relative;top:auto;padding:clamp(96px,15svh,140px) 16px 0;gap:14px}
+  .hero-media{position:relative;left:auto;right:auto;bottom:auto;height:auto;min-height:0;margin-top:clamp(8px,2svh,20px);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26%);mask-image:linear-gradient(to bottom,transparent 0,#000 26%)}
+  .hero-media video{position:absolute;inset:0;object-position:38% 100%;transform:scale(1.12);transform-origin:50% 100%}
+  .cloud-l{width:58vw;left:-16vw;top:4%}
+  .cloud-r{width:54vw;right:-18vw;top:5%}
   .scroll-cue{display:none}
   .loop{height:100svh;min-height:600px}
   .loop-head{top:76px}
