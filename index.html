@@ -31,6 +31,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* primitives */
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;padding:5px 10px;border-radius:999px;background:var(--pill);color:#6b2f14;letter-spacing:.01em;white-space:nowrap}
+.pill.hot{background:var(--saffron);color:#fff;font-weight:600}
+.pill.hot i{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
 .pill i{width:6px;height:6px;border-radius:50%;background:var(--saffron)}
 .h2{font-size:clamp(28px,3.3vw,48px);font-weight:400;letter-spacing:-.035em;line-height:1.1}
 .h2 em{color:var(--rust);font-weight:500}
@@ -72,8 +74,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:#fff}
 .cloud{position:absolute;pointer-events:none}
 .cloud img{width:100%}
-.cloud-l{top:-3%;left:-5%;width:min(44vw,640px);z-index:4}
-.cloud-r{top:2%;right:-6%;width:min(42vw,620px);z-index:4}
+.cta-cloud-l{top:1%;left:-5%;width:min(40vw,580px);z-index:2}
+.cta-cloud-r{top:7%;right:-6%;width:min(36vw,540px);z-index:2}
 .hero-copy{position:absolute;z-index:6;top:24%;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;padding:0 16px;text-align:center}
 #heroTitle{font-size:clamp(36px,5.4vw,80px);font-weight:400;letter-spacing:-.045em;line-height:1.03}
 #heroTitle em{color:var(--rust);font-weight:500}
@@ -148,6 +150,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .home-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .9s var(--ease),transform 1.4s var(--ease)}
 .home-media img.on{opacity:1;transform:none}
 .home-media .tag{position:absolute;left:16px;top:16px;z-index:2}
+.home-media .tag-r{position:absolute;right:16px;top:16px;z-index:2}
 .home-info{border-radius:26px;background:#faf7f2;padding:30px 28px;display:flex;flex-direction:column;gap:22px}
 .home-panel{display:none;flex-direction:column;gap:22px}
 .home-panel.on{display:flex}
@@ -206,17 +209,22 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .gal-progress i{display:block;height:100%;width:30%;background:var(--ink);transform-origin:left}
 
 /* MATERIALS */
-.materials{background:#fff;padding:clamp(90px,14vh,150px) 0}
-.materials .sec-head{padding:0 4vw}
-.mat-stack{display:flex;flex-direction:column;gap:14px}
-.mat{position:relative;height:88vh;min-height:560px;overflow:hidden}
-.mat video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.mat .role{position:absolute;left:4vw;top:40px;z-index:2}
-.mat-copy{position:absolute;z-index:2;inset:auto 0 0 0;padding:120px 4vw 50px;background:linear-gradient(to top,rgba(255,255,255,.97) 30%,rgba(255,255,255,.6) 62%,transparent)}
-.mat-copy h3{font-size:clamp(46px,7vw,110px);font-weight:500;letter-spacing:-.05em;line-height:.92}
-.mat-copy dl{display:flex;flex-wrap:wrap;gap:16px 46px;margin-top:24px}
-.mat-copy dt{font-size:10.5px;font-weight:500;color:var(--mute);margin-bottom:4px}
-.mat-copy dd{font-size:18px;font-weight:500;letter-spacing:-.02em}
+.materials{background:#fff;padding:clamp(90px,14vh,150px) 4vw}
+.mat-stack{display:flex;flex-direction:column;gap:clamp(16px,2vw,24px);max-width:1280px;margin:0 auto}
+.mat{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,24px);align-items:stretch}
+.mat.flip .mat-media{order:2}
+.mat-media{position:relative;aspect-ratio:1;max-height:76vh;width:100%;border-radius:28px;overflow:hidden;background:#dcd7d3}
+.mat-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mat-media .role{position:absolute;left:18px;top:18px;z-index:2;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.mat-copy{border-radius:28px;background:#faf7f2;padding:clamp(28px,3.4vw,52px);display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+.mat-copy .idx{font-size:13px;font-weight:600;color:var(--saffron);font-variant-numeric:tabular-nums}
+.mat-copy h3{font-size:clamp(38px,4.6vw,72px);font-weight:500;letter-spacing:-.05em;line-height:.95;margin:14px 0 18px}
+.mat-copy p{font-size:clamp(15px,1.15vw,17px);line-height:1.55;color:var(--ink-2);max-width:40ch}
+.mat-copy dl{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #ece5da}
+.mat-copy dl div{padding:16px 0;border-bottom:1px solid #ece5da}
+.mat-copy dl div:nth-child(odd){padding-right:16px}
+.mat-copy dt{font-size:11px;font-weight:500;color:var(--mute);margin-bottom:5px}
+.mat-copy dd{font-size:clamp(15px,1.25vw,18px);font-weight:500;letter-spacing:-.02em}
 
 /* SUSTAIN */
 .eco{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1180px;margin:0 auto}
@@ -246,14 +254,14 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .outdoor .o2 h3{font-size:22px;font-weight:500;letter-spacing:-.03em;margin-bottom:16px}
 
 /* PLAN */
-.plan-grid{position:relative;z-index:2;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:.75fr 1.25fr;gap:4vw;align-items:start}
-.legend{position:sticky;top:110px}
-.legend ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;margin-top:26px;max-height:56vh;overflow:auto;scrollbar-width:thin}
+.plan-grid{position:relative;z-index:2;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:center}
+.legend{position:relative}
+.legend ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;margin-top:26px}
 .legend li{display:flex;gap:10px;align-items:baseline;padding:8px 6px;border-radius:10px;font-size:13px;cursor:pointer;transition:background .3s,color .3s}
 .legend li b{font-size:11px;font-weight:600;color:var(--saffron);font-variant-numeric:tabular-nums;min-width:18px}
 .legend li:hover,.legend li.on{background:var(--pill)}
-.plan{position:relative;border-radius:26px;background:#fff;box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(60,40,20,.08);overflow:hidden}
-.plan img{width:100%;transition:filter .5s}
+.plan{position:relative;justify-self:center;width:min(100%,calc(84vh * 1800 / 2183));border-radius:26px;background:#fff;box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(60,40,20,.08);overflow:hidden}
+.plan img{width:100%;height:auto;transition:filter .5s}
 .plan.focus img{filter:saturate(.5) brightness(1.04)}
 .mk{position:absolute;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--saffron);color:#fff;font-size:9px;font-weight:700;display:grid;place-items:center;box-shadow:0 0 0 3px rgba(255,255,255,.9),0 4px 10px rgba(0,0,0,.25);transform:scale(0);transition:transform .5s var(--ease) var(--d,0s),opacity .4s,background .3s}
 .plan.in .mk{transform:scale(1)}
@@ -407,7 +415,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .way{flex-basis:80vw;height:min(60svh,500px)}
   .way-body{min-height:0;padding:16px 18px 18px}
   .legend{position:relative;top:auto;order:2}
-  .legend ol{max-height:none;grid-template-columns:1fr 1fr}
+  .legend ol{grid-template-columns:1fr 1fr}
+  .plan{width:min(100%,calc(80svh * 1800 / 2183))}
   .home-media{min-height:62vw}
   .mk-card{min-height:0}
 }
@@ -418,8 +427,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .hero-copy{position:relative;top:auto;padding:clamp(96px,15svh,140px) 16px 0;gap:14px}
   .hero-media{position:relative;left:auto;right:auto;bottom:auto;height:auto;min-height:0;margin-top:clamp(8px,2svh,20px);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26%);mask-image:linear-gradient(to bottom,transparent 0,#000 26%)}
   .hero-media video{position:absolute;inset:0;object-position:38% 100%;transform:scale(1.12);transform-origin:50% 100%}
-  .cloud-l{width:58vw;left:-16vw;top:4%}
-  .cloud-r{width:54vw;right:-18vw;top:5%}
+  .cta-cloud-l{width:64vw;left:-18vw;top:0}
+  .cta-cloud-r{width:58vw;right:-20vw;top:3%}
   .scroll-cue{display:none}
   .loop{height:100svh;min-height:600px}
   .loop-head{top:76px}
@@ -437,7 +446,10 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .rings .dest circle{r:7px}
   .mini-cloud{display:none}
   .lvl-thumb{display:block!important}
-  .mat{height:100svh}
+  .mat{grid-template-columns:1fr;gap:10px}
+  .mat.flip .mat-media{order:0}
+  .mat-media{max-height:none}
+  .mat-copy{gap:22px}
   .shot{height:58vh;aspect-ratio:4/5}
   .kv{grid-template-columns:1fr 1fr}
   .spec-body ul{grid-template-columns:1fr;padding-left:4px}
@@ -475,12 +487,11 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="cloud cloud-l" data-par="-60"><img class="drift-a" src="assets/petalyx/cloud-a.webp" alt=""></div>
-    <div class="cloud cloud-r" data-par="-90"><img class="drift-b" src="assets/petalyx/cloud-b.webp" alt=""></div>
     <div class="hero-copy">
       <span class="pill hero-pill"><i></i>Hygge, pronounced “hoo-gah”</span>
       <h1 class="split" id="heroTitle">Bengaluru, welcome to<br>the Hygge way of <em>life.</em></h1>
       <div class="hero-sub">
+        <span class="pill hot"><i></i>Ready to move in</span>
         <span class="pill">81 villas &amp; villaments</span>
         <span class="pill">3.9 acres</span>
         <span class="pill">Off Kanakapura Road</span>
@@ -575,6 +586,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     <div class="home-stage">
       <div class="home-media">
         <span class="pill tag" id="homeTag">Luxury row villas</span>
+        <span class="pill hot tag-r"><i></i>Ready to move in</span>
         <img class="on" src="assets/renders/ext-cam1-villa.jpg" alt="4-bed row villas with brick façades" loading="lazy">
         <img src="assets/renders/ext-cam8-villament.jpg" alt="Villament block with terraces and gardens" loading="lazy">
       </div>
@@ -711,18 +723,28 @@ body.intro #app{transform:scale(.9);border-radius:28px}
       <h2 class="h2 split">Built from<br>honest <em>materials.</em></h2>
     </div>
     <div class="mat-stack">
-      <div class="mat">
-        <video autoplay muted loop playsinline preload="metadata" src="assets/media/material-brick-turntable.mp4"></video>
-        <span class="pill role">The façade</span>
-        <div class="mat-copy"><h3>Brick cladding</h3>
-          <dl><div><dt>Material</dt><dd>Fired clay</dd></div><div><dt>Use</dt><dd>Façade cladding</dd></div><div><dt>Property</dt><dd>Breathable, cooler walls</dd></div><div><dt>Orientation</dt><dd>East &amp; North</dd></div></dl></div>
-      </div>
-      <div class="mat">
-        <video autoplay muted loop playsinline preload="metadata" src="assets/media/material-kota-turntable.mp4"></video>
-        <span class="pill role">The floor</span>
-        <div class="mat-copy"><h3>Kota stone</h3>
-          <dl><div><dt>Material</dt><dd>Natural limestone</dd></div><div><dt>Use</dt><dd>Flooring throughout</dd></div><div><dt>Property</dt><dd>Cool, durable</dd></div><div><dt>Master suite</dt><dd>Laminated wood</dd></div></dl></div>
-      </div>
+      <article class="mat">
+        <div class="mat-media">
+          <video autoplay muted loop playsinline preload="metadata" src="assets/media/material-brick-turntable.mp4"></video>
+          <span class="pill role">The façade</span>
+        </div>
+        <div class="mat-copy">
+          <div><span class="idx">01</span><h3>Brick cladding</h3>
+          <p>Fired-clay brick wraps every façade, turned to face east and north. It breathes, weathers beautifully and keeps the walls cooler through Bengaluru summers.</p></div>
+          <dl><div><dt>Material</dt><dd>Fired clay</dd></div><div><dt>Use</dt><dd>Façade cladding</dd></div><div><dt>Property</dt><dd>Breathable, cooler walls</dd></div><div><dt>Orientation</dt><dd>East &amp; North</dd></div></dl>
+        </div>
+      </article>
+      <article class="mat flip">
+        <div class="mat-media">
+          <video autoplay muted loop playsinline preload="metadata" src="assets/media/material-kota-turntable.mp4"></video>
+          <span class="pill role">The floor</span>
+        </div>
+        <div class="mat-copy">
+          <div><span class="idx">02</span><h3>Kota stone</h3>
+          <p>Natural Kota limestone runs through the home — cool underfoot, quietly hard-wearing, and better with every year of bare feet. Laminated wood warms the top-floor master.</p></div>
+          <dl><div><dt>Material</dt><dd>Natural limestone</dd></div><div><dt>Use</dt><dd>Flooring throughout</dd></div><div><dt>Property</dt><dd>Cool, durable</dd></div><div><dt>Master suite</dt><dd>Laminated wood</dd></div></dl>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -890,9 +912,11 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   <section class="cta" id="cta">
     <div class="sq-field" data-count="16"></div>
     <div class="cta-img"><img id="ctaImg" alt="Brick-clad villas at Saffron Skies at golden hour" src="assets/renders/ext-cam1-villa.jpg" loading="lazy"></div>
+    <div class="cloud cta-cloud-l"><img class="drift-a" src="assets/petalyx/cloud-a.webp" alt=""></div>
+    <div class="cloud cta-cloud-r"><img class="drift-b" src="assets/petalyx/cloud-b.webp" alt=""></div>
     <div class="petals" id="petals"></div>
     <div class="cta-card" id="ctaCard">
-      <span class="pill"><i></i>Book a private visit</span>
+      <span class="pill"><i></i>Ready to move in · book a private visit</span>
       <h2 class="h2 split">Come for the gardens.<br>Stay for the <em>evenings.</em></h2>
       <p class="reveal">Walk the model villa, stand on a terrace at golden hour and meet the team. Visits by appointment, all week.</p>
       <div class="cta-btns reveal">
@@ -1233,8 +1257,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 
     /* materials: slow zoom */
     $$('.mat').forEach(function(m){
-      gsap.fromTo($('video',m),{scale:1.12},{scale:1,ease:'none',scrollTrigger:{trigger:m,start:'top bottom',end:'bottom top',scrub:true}});
-      gsap.from($$('.mat-copy > *',m),{y:40,opacity:0,stagger:.12,duration:1,ease:'power3.out',scrollTrigger:{trigger:m,start:'top 55%'}});
+      gsap.from($('.mat-media',m),{clipPath:'inset(10% 10% 10% 10% round 28px)',ease:'none',scrollTrigger:{trigger:m,start:'top 95%',end:'top 45%',scrub:true}});
+      gsap.from($$('.mat-copy > div > *, .mat-copy dl div',m),{y:30,opacity:0,stagger:.08,duration:.9,ease:'power3.out',scrollTrigger:{trigger:m,start:'top 70%'}});
     });
 
     /* sustain */
@@ -1261,6 +1285,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     gsap.from('.awards div',{opacity:0,y:14,stagger:.08,duration:.6,scrollTrigger:{trigger:'.awards',start:'top 88%'}});
 
     /* CTA */
+    gsap.fromTo('.cta-cloud-l',{x:-140,opacity:0},{x:20,opacity:1,ease:'none',scrollTrigger:{trigger:'#cta',start:'top bottom',end:'bottom bottom',scrub:true}});
+    gsap.fromTo('.cta-cloud-r',{x:140,opacity:0},{x:-20,opacity:1,ease:'none',scrollTrigger:{trigger:'#cta',start:'top bottom',end:'bottom bottom',scrub:true}});
     gsap.fromTo('#ctaImg',{yPercent:-12},{yPercent:0,ease:'none',scrollTrigger:{trigger:'#cta',start:'top bottom',end:'bottom bottom',scrub:true}});
     gsap.from('#ctaCard',{y:80,scale:.94,opacity:0,filter:'blur(10px)',duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'#cta',start:'top 60%'}});
 
@@ -1292,8 +1318,6 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     tl.to(heroWords,{opacity:1,y:0,filter:'blur(0px)',duration:1,stagger:.07,ease:'power3.out'},'-=.5');
     tl.to('.hero-sub .pill',{opacity:1,y:0,duration:.6,stagger:.08,ease:'power3.out'},'-=.6');
     tl.to('.hero-foot',{opacity:1,y:0,duration:.6},'-=.4');
-    tl.from('.cloud-l',{x:-120,opacity:0,duration:1.6,ease:'power3.out'},.4);
-    tl.from('.cloud-r',{x:120,opacity:0,duration:1.6,ease:'power3.out'},.4);
     tl.from('#heroGlass .glass',{opacity:0,scale:.6,duration:.6,stagger:{each:.05,from:'random'},ease:'back.out(2)'},'-=1');
   }
 })();
