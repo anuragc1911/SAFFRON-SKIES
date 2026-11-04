@@ -71,8 +71,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .nav-links a:hover::after,.nav-links a.on::after{transform:none}
 
 /* HERO */
-.hero{position:relative;min-height:100vh;min-height:100dvh;padding:12px;background:#fff;display:grid}
-.hero-frame{position:relative;min-height:620px;border-radius:28px;overflow:hidden;background:#cfd8cf;isolation:isolate}
+.hero{position:relative;min-height:100vh;min-height:100dvh;background:#fff;display:grid}
+.hero-frame{position:relative;min-height:620px;overflow:hidden;background:#cfd8cf;isolation:isolate}
 .hero-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 50%;transform-origin:35% 50%}
 .hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:
   radial-gradient(120% 90% at 100% 100%,rgba(28,14,6,.72) 0%,rgba(28,14,6,.38) 38%,rgba(28,14,6,0) 62%),
@@ -167,6 +167,25 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .typ div{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .typ span{color:var(--mute)}
 .home-panel .note{font-size:11px;color:var(--mute)}
+
+/* UNIT PLANS */
+.up-controls{position:relative;z-index:2;max-width:1280px;margin:0 auto 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.up-switch{position:relative;display:inline-flex;padding:4px;border-radius:999px;background:#f4f1ec;box-shadow:inset 0 0 0 1px var(--line)}
+.up-types,.up-floors{display:flex;flex-wrap:wrap;gap:6px}
+.up-grid{position:relative;z-index:2;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px}
+.up-stage{min-width:0;display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:26px;background:#fff;box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(60,40,20,.07)}
+.up-view{display:block;width:100%;height:min(68vh,660px);cursor:zoom-in;border-radius:14px}
+.up-view img{width:100%;height:100%;object-fit:contain;transition:opacity .35s}
+.up-view.loading img{opacity:0}
+.up-cap{font-size:14px;line-height:1.5;color:var(--ink-2);max-width:62ch}
+.up-side{min-width:0;display:flex;flex-direction:column;gap:16px;padding:26px;border-radius:26px;background:#faf7f2}
+.up-side h3{font-size:clamp(26px,2.3vw,34px);font-weight:400;letter-spacing:-.035em;line-height:1.08}
+.up-units{font-size:14px;line-height:1.45;color:var(--ink-2);margin-top:8px}
+.up-key{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
+.up-key img{width:100%;height:100%;max-height:44vh;min-height:200px;object-fit:contain;object-position:left center;mix-blend-mode:multiply}
+.up-key figcaption{font-size:12px;color:var(--mute)}
+.up-actions{display:flex;flex-wrap:wrap;gap:8px}
+.up-note{position:relative;z-index:2;max-width:1280px;margin:14px auto 0;font-size:11px;color:var(--mute)}
 
 /* LEVELS (accordion) */
 .loop{position:relative;height:100vh;min-height:700px;overflow:hidden;background:#fff}
@@ -384,7 +403,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:rgba(20,12,8,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
 .lb.on{opacity:1;visibility:visible}
 .lb-stage{width:min(1400px,92vw);height:min(82vh,900px);display:grid;place-items:center}
-.lb-stage img{max-width:100%;max-height:100%;border-radius:14px;object-fit:contain}
+.lb-stage img{display:block;width:auto;height:auto;max-width:100%;max-height:min(82vh,900px);border-radius:14px;object-fit:contain}
 .lb-stage iframe{width:100%;aspect-ratio:16/9;max-height:100%;border:0;border-radius:14px;background:#000}
 .lb-cap{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:500;white-space:nowrap}
 .lb button{position:absolute;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;display:grid;place-items:center;transition:background .3s}
@@ -409,7 +428,9 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .stats{height:auto;min-height:100vh;padding:110px 0 300px}
   .tree-wrap{bottom:0}
   .band{display:none}
-  .hygge-grid,.home-stage,.plan-grid,.loc-grid,.makers-grid,.outdoor{grid-template-columns:1fr}
+  .hygge-grid,.home-stage,.plan-grid,.loc-grid,.makers-grid,.outdoor,.up-grid{grid-template-columns:1fr}
+  .up-view{height:auto;aspect-ratio:1}
+  .up-key img{max-height:300px}
   .hygge-frame{aspect-ratio:4/4.4}
   .ways-pin{height:100svh;min-height:560px;padding:76px 0 26px;gap:20px}
   .ways-head{flex-direction:column;align-items:flex-start;gap:0}
@@ -426,8 +447,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 @media (max-width:760px){
   .nav{top:14px;gap:16px;padding-left:14px}
   .brand img{height:26px}
-  .hero{min-height:100svh;padding:8px}
-  .hero-frame{min-height:560px;border-radius:22px}
+  .hero{min-height:100svh}
+  .hero-frame{min-height:560px}
   .hero-frame video{object-position:30% 50%}
   .hero-shade{background:linear-gradient(to top,rgba(28,14,6,.82) 0%,rgba(28,14,6,.55) 34%,rgba(28,14,6,0) 62%),linear-gradient(to bottom,rgba(255,255,255,.3) 0%,rgba(255,255,255,0) 16%)}
   .hero-copy{left:20px;right:20px;bottom:24px;width:auto;gap:14px}
@@ -449,6 +470,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .panel-in{left:16px;right:16px;bottom:56px;width:auto;gap:10px;flex-direction:column;align-items:flex-start}
   .num{font-size:min(120px,16svh)}
   .lvl-dots{display:flex!important}
+  .lb-stage.pan{overflow:auto;place-items:center start;-webkit-overflow-scrolling:touch}
+  .lb-stage.pan img{max-width:none;max-height:none;height:min(82svh,900px);width:auto}
   .step,.panel.is-active .step{opacity:1;transform:none;filter:none;width:auto;transition:none}
   .rings .dest text{font-size:22px}
   .rings .rl{font-size:18px}
@@ -631,6 +654,44 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     </div>
   </section>
 
+  <!-- UNIT PLANS -->
+  <section class="sec" id="unit-plans">
+    <div class="sec-head">
+      <span class="pill reveal"><i></i>Unit plans</span>
+      <h2 class="h2 split">See every home,<br>floor by <em>floor.</em></h2>
+    </div>
+    <div class="up-controls reveal">
+      <div class="up-switch switch" id="upSwitch" role="group" aria-label="Home type">
+        <span class="knob" id="upKnob"></span>
+        <button class="on" data-c="villa" aria-pressed="true">Villas</button>
+        <button data-c="villament" aria-pressed="false">Villaments</button>
+      </div>
+      <div class="up-types" id="upTypes" role="group" aria-label="Homes"></div>
+    </div>
+    <div class="up-grid reveal">
+      <div class="up-stage">
+        <div class="up-floors" id="upFloors" role="group" aria-label="Floors"></div>
+        <button class="up-view" id="upView" aria-label="Enlarge this floor plan"><img id="upImg" alt="" width="1740" height="1792"></button>
+        <p class="up-cap" id="upCap"></p>
+      </div>
+      <aside class="up-side">
+        <div>
+          <h3 id="upName"></h3>
+          <p class="up-units" id="upUnits"></p>
+        </div>
+        <figure class="up-key">
+          <img id="upKey" alt="" width="580" height="803">
+          <figcaption>These homes are highlighted on the site plan.</figcaption>
+        </figure>
+        <div class="up-actions">
+          <button class="btn" id="upLarge">View larger</button>
+          <a class="btn ghost" id="upPdf" href="#" download>Download PDF</a>
+        </div>
+      </aside>
+    </div>
+    <p class="up-note">Plans are indicative. Dimensions are as shown on the official drawings; refer to the agreement for final figures.</p>
+  </section>
+
   <!-- LEVEL LIVING -->
   <section class="loop" id="levels">
     <div class="loop-cloud" data-par="-50">
@@ -668,7 +729,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
         <div class="panel-in"><div class="num">3</div><div class="step">
           <img class="mini-cloud" src="assets/petalyx/cloud-b.webp" alt="">
           <small>Level three · Relaxation</small><h3>A floor to unwind</h3>
-          <p>A family room and two bedrooms, tucked a level away from the day’s comings and goings.</p>
+          <p>Two bedrooms and a secondary family living, a level away from the day’s comings and goings.</p>
           <img class="lvl-thumb" src="assets/renders/int-bedroom-2.jpg" alt="Bedroom with garden view" loading="lazy">
         </div></div>
       </div>
@@ -677,7 +738,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
         <div class="panel-in"><div class="num">4</div><div class="step">
           <img class="mini-cloud" src="assets/petalyx/cloud-a.webp" alt="">
           <small>Level four · Private</small><h3>Your own sky</h3>
-          <p>The master suite crowns the house, with a 400 sq.ft. terrace all to itself — for coffee at sunrise and stars at night.</p>
+          <p>The master suite and its terrace, all to themselves. Coffee at sunrise, stars at night.</p>
           <img class="lvl-thumb" src="assets/renders/int-bedroom-1.jpg" alt="Master suite" loading="lazy">
         </div></div>
       </div>
@@ -951,7 +1012,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 
 <!-- LIGHTBOX -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Viewer">
-  <div class="lb-stage" id="lbStage"></div>
+  <div class="lb-stage" id="lbStage" data-lenis-prevent></div>
   <p class="lb-cap" id="lbCap"></p>
   <button class="lb-x" id="lbX" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <button class="lb-p" id="lbP" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -1050,9 +1111,9 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 
   /* LIGHTBOX */
   var lb=$('#lb'), lbStage=$('#lbStage'), lbCap=$('#lbCap'), lbList=[], lbI=0;
-  function lbShow(){ var it=lbList[lbI]; lbStage.innerHTML='<img src="'+it.src+'" alt="">'; lbStage.firstChild.alt=it.cap; lbCap.textContent=it.cap+(lbList.length>1?'  ·  '+(lbI+1)+' / '+lbList.length:''); gsap.fromTo(lbStage.firstChild,{opacity:0,scale:.97},{opacity:1,scale:1,duration:.5,ease:'power3.out'}); }
+  function lbShow(){ var it=lbList[lbI]; lbStage.classList.toggle('pan',!!it.pan); lbStage.scrollLeft=0; lbStage.innerHTML='<img src="'+it.src+'" alt="">'; lbStage.firstChild.alt=it.cap; lbCap.textContent=it.cap+(lbList.length>1?'  ·  '+(lbI+1)+' / '+lbList.length:''); gsap.fromTo(lbStage.firstChild,{opacity:0,scale:.97},{opacity:1,scale:1,duration:.5,ease:'power3.out'}); }
   function lbOpen(list,i){ lbList=list; lbI=i; lb.classList.remove('is-video'); lbShow(); lb.classList.add('on'); lenis.stop(); }
-  function filmOpen(id){ lb.classList.add('is-video'); lbStage.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Saffron Skies film"></iframe>'; lbCap.textContent='GRC Saffron Skies'; lb.classList.add('on'); lenis.stop(); }
+  function filmOpen(id){ lb.classList.add('is-video'); lbStage.classList.remove('pan'); lbStage.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Saffron Skies film"></iframe>'; lbCap.textContent='GRC Saffron Skies'; lb.classList.add('on'); lenis.stop(); }
   function lbClose(){ lb.classList.remove('on'); setTimeout(function(){ lbStage.innerHTML=''; },400); lenis.start(); }
   $('#lbX').onclick=lbClose; lb.addEventListener('click',function(e){ if(e.target===lb||e.target===lbStage) lbClose(); });
   $('#lbP').onclick=function(){ lbI=(lbI-1+lbList.length)%lbList.length; lbShow(); };
@@ -1060,6 +1121,67 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   addEventListener('keydown',function(e){ if(!lb.classList.contains('on')) return; if(e.key==='Escape') lbClose(); if(lb.classList.contains('is-video')) return; if(e.key==='ArrowLeft') $('#lbP').click(); if(e.key==='ArrowRight') $('#lbN').click(); });
   $$('[data-film]').forEach(function(b){ b.addEventListener('click',function(){ filmOpen(b.getAttribute('data-film')); }); });
   $('#planZoom').addEventListener('click',function(){ lbOpen([{src:'assets/renders/masterplan.jpg',cap:'Master plan'}],0); });
+
+  /* UNIT PLANS */
+  (function(){
+    var GF='Ground and first floors', ST='Second and third floors', FT='Fourth floor and terrace';
+    var below='Parking for two cars, a servant room and storage on the ground floor. Living, dining, kitchen and a bedroom on the first.';
+    var above='Two bedrooms and a secondary family living on the second floor. The master suite and terrace on the third.';
+    function villa(id,name,units){ return {id:id,name:name,units:units,sheets:[{k:'g1',l:GF,c:below},{k:'23',l:ST,c:above}]}; }
+    var a38=villa('b2c','Building 2, Unit C','Home A38');
+    a38.sheets[0].c='Parking for two cars and a servant room on the ground floor. Living, dining, kitchen and a bedroom on the first.';
+    var UP={
+      villa:[villa('b4','Building 4','Homes A01 to A08'),villa('b3b','Building 3, Unit B','Homes A09 to A17'),villa('b3a','Building 3, Unit A','Homes A18 to A27'),a38,villa('b2b','Building 2, Unit B','Homes A39 to A49')],
+      villament:[
+        {id:'b1a',name:'Building 1, Unit A',units:'Homes B201 to B208',sheets:[{k:'23',l:ST,c:'Living, dining, kitchen and a bedroom on the second floor. A family living and two more bedrooms on the third.'},{k:'4',l:FT,c:'A bedroom suite opening onto a terrace on the fourth floor, with an upper terrace above.'}]},
+        {id:'b1b',name:'Building 1, Unit B',units:'Homes B209 to B216',sheets:[{k:'23',l:ST,c:'Living, dining, kitchen, a bedroom and a store or study on the second floor. A study and two more bedrooms on the third.'},{k:'4',l:FT,c:'A bedroom suite opening onto a terrace on the fourth floor, with an upper terrace above.'}]}
+      ]
+    };
+    var cat='villa', type=UP.villa[0], sheet=0;
+    var sw=$('#upSwitch'), knobEl=$('#upKnob'), types=$('#upTypes'), floors=$('#upFloors'), view=$('#upView'), img=$('#upImg');
+    function src(t,k){ return 'assets/plans/'+t.id+'-'+k+'.webp'; }
+    function short(t){ return t.units.replace(/^Homes? /,''); }
+    img.addEventListener('load',function(){ view.classList.remove('loading'); });
+    img.addEventListener('error',function(){ view.classList.remove('loading'); });
+    function chips(box,items,cur,fn){
+      box.innerHTML='';
+      items.forEach(function(label,i){
+        var b=document.createElement('button'); b.className='chip'+(i===cur?' on':''); b.textContent=label; b.setAttribute('aria-pressed',i===cur);
+        b.addEventListener('click',function(){ fn(i); }); box.appendChild(b);
+      });
+    }
+    function showSheet(i){
+      sheet=i; var sh=type.sheets[i], next=src(type,sh.k);
+      chips(floors,type.sheets.map(function(x){ return x.l; }),i,showSheet);
+      if(img.getAttribute('src')!==next){ view.classList.add('loading'); img.setAttribute('src',next); }
+      img.alt=type.name+' floor plan, '+sh.l.toLowerCase();
+      $('#upCap').textContent=sh.c;
+      var pdf=$('#upPdf'); pdf.href='assets/plans/pdf/'+type.id+'-'+sh.k+'.pdf';
+      pdf.setAttribute('download','Saffron-Skies-'+(type.name+' '+sh.l).replace(/[^A-Za-z0-9]+/g,'-')+'.pdf');
+    }
+    function showType(i){
+      type=UP[cat][i];
+      chips(types,UP[cat].map(short),i,showType);
+      $('#upName').textContent=type.name; $('#upUnits').textContent=type.units;
+      var key=$('#upKey'); key.setAttribute('src','assets/plans/'+type.id+'-key.webp'); key.alt='Site plan with '+type.name+' highlighted';
+      type.sheets.forEach(function(x){ (new Image()).src=src(type,x.k); });
+      showSheet(0);
+    }
+    function moveKnob(){ var b=$('button.on',sw); if(!b) return; knobEl.style.width=b.offsetWidth+'px'; knobEl.style.transform='translateX('+(b.offsetLeft-4)+'px)'; }
+    function showCat(c){
+      cat=c;
+      $$('button',sw).forEach(function(b){ var on=b.getAttribute('data-c')===c; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
+      moveKnob(); showType(0);
+    }
+    $$('button',sw).forEach(function(b){ b.addEventListener('click',function(){ showCat(b.getAttribute('data-c')); }); });
+    /* the homes switch above keeps this section on the same home type */
+    hBtns.forEach(function(b,i){ b.addEventListener('click',function(){ showCat(i===0?'villa':'villament'); }); });
+    function enlarge(){ lbOpen(type.sheets.map(function(x){ return {src:src(type,x.k),cap:type.name+', '+x.l.toLowerCase(),pan:true}; }),sheet); }
+    view.addEventListener('click',enlarge); $('#upLarge').addEventListener('click',enlarge);
+    addEventListener('resize',moveKnob);
+    document.fonts && document.fonts.ready.then(moveKnob);
+    showCat('villa');
+  })();
 
   /* GALLERY: filter, drag, progress, open */
   var strip=$('#strip'), shots=$$('.shot',strip), bar=$('#galBar');
