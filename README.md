@@ -42,3 +42,8 @@ python3 -m http.server 5310
 python3 motion/render.py h motion/saffron-skies-film-16x9.mp4
 python3 motion/render.py v motion/saffron-skies-film-9x16.mp4
 ```
+
+## Explainer video
+`motion/saffron-skies-explainer-16x9.mp4` and `motion/saffron-skies-explainer-9x16.mp4`: 89 second fast-paced explainer of the whole project with voice over and sound effects.
+
+Sources are in `motion/explainer/`: `index.html` (GSAP timeline, timed to the voice lines), `vo/` (the 14 tightened voice lines, Higgsfield Seed Audio voice `731b4ffe-e95e-59f4-8c00-81608936091f`), `audio.py` (synthesises the effects and mixes them with the voice), `render.py` (frame-by-frame render). Changing a line means replacing its file in `vo/`, updating its duration in the `D` array in `index.html`, then re-rendering.
