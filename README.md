@@ -28,3 +28,17 @@ Hero (terrace film, “Watch the film” → YouTube) · Stats (81 / 3.9 / 180+ 
 - `assets/petalyx/` — cloud, tree and backdrop art for the Petalyx motion layer
 - `assets/grc/` — model-villa photos from grcinfra.com (`gallery-*.webp`, used in the gallery)
 - `assets/media/` — hero terrace film + poster, brick & Kota stone turntables, resident testimonial clips (names / unit numbers are placeholders)
+
+## Motion graphics
+`motion/saffron-skies-film-16x9.mp4` and `motion/saffron-skies-film-9x16.mp4`: 20.9 second fast-cut brand film, 30fps, silent. The film is a GSAP timeline in `motion/index.html`, rendered frame by frame with `motion/render.py`, so logos, numbers and the RERA line are exact.
+
+To re-render, extract the video frames (git-ignored), serve the repo root, then render:
+```bash
+mkdir -p motion/.seq/hero motion/.seq/brick motion/.seq/kota
+ffmpeg -i assets/media/hero-terrace.mp4 -vf "fps=30,scale=1920:-2" -q:v 3 motion/.seq/hero/%04d.jpg
+ffmpeg -t 2.2 -i assets/media/material-brick-turntable.mp4 -vf "fps=30,scale=1200:-2" -q:v 3 motion/.seq/brick/%04d.jpg
+ffmpeg -t 2.2 -i assets/media/material-kota-turntable.mp4 -vf "fps=30,scale=1200:-2" -q:v 3 motion/.seq/kota/%04d.jpg
+python3 -m http.server 5310
+python3 motion/render.py h motion/saffron-skies-film-16x9.mp4
+python3 motion/render.py v motion/saffron-skies-film-9x16.mp4
+```
