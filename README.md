@@ -23,6 +23,7 @@ Hero (terrace film, “Watch the film” → YouTube) · Stats (81 / 3.9 / 180+ 
 
 ## Assets
 - `assets/brand/` — Saffron Skies logo (dark + cream) and GRC Group mark (white + maroon), extracted from the official “Key to Happiness” artboard; original artboard kept as `key-to-happiness.png`
+- `assets/photos/` — real site photography (September 2026), model-villa stills taken from the official reels, and the hero film (`hero-film-wide.mp4`, `hero-film-tall.mp4`) cut from the reels
 - `assets/renders/` — official exterior (cam1–cam8) and interior renders, web-sized from the source TIF/JPGs; `masterplan.jpg` from the official master-plan PDF (printed legend removed — rebuilt as interactive HTML)
 - `assets/plans/` — unit plans cropped from the official PDFs (`*.webp`), site-location keys (`*-key.webp`) and the source PDFs (`pdf/`). Named by building and unit: `b4` Building 4, `b3a`/`b3b` Building 3 Unit A/B, `b2b`/`b2c` Building 2 Unit B/C, `b1a`/`b1b` Building 1 Unit A/B. Not supplied yet: A28 to A37, B101 to B116
 - `assets/petalyx/` — cloud, tree and backdrop art for the Petalyx motion layer

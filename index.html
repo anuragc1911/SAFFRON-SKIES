@@ -72,8 +72,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 
 /* HERO */
 .hero{position:relative;min-height:100vh;min-height:100dvh;background:#fff;display:grid}
-.hero-frame{position:relative;min-height:620px;overflow:hidden;background:#cfd8cf;isolation:isolate}
-.hero-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 50%;transform-origin:35% 50%}
+.hero-frame{position:relative;min-height:620px;overflow:hidden;background:#6d7d72;isolation:isolate}
+.hero-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform-origin:50% 50%}
 .hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:
   radial-gradient(120% 90% at 100% 100%,rgba(28,14,6,.72) 0%,rgba(28,14,6,.38) 38%,rgba(28,14,6,0) 62%),
   linear-gradient(to top,rgba(28,14,6,.42) 0%,rgba(28,14,6,0) 42%),
@@ -110,6 +110,17 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .logos span{font-size:20px;font-weight:700;letter-spacing:-.03em;white-space:nowrap}
 .logos span.l{font-weight:400}
 .logos span.s{font-size:15px;font-weight:500}
+
+/* ON SITE */
+.os{position:relative;z-index:2;max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(150px,17vw,250px);gap:14px}
+.os figure{position:relative;border-radius:22px;overflow:hidden;cursor:zoom-in;background:#ece7df}
+.os img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.os figure:hover img{transform:scale(1.04)}
+.os figcaption{position:absolute;left:12px;bottom:12px}
+.os figcaption span{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.9)}
+.os1{grid-column:span 7;grid-row:span 2}
+.os2,.os3{grid-column:span 5}
+.os4,.os5{grid-column:span 6;grid-row:span 1}
 
 /* HYGGE */
 .hygge{padding-top:clamp(110px,18vh,190px)}
@@ -197,7 +208,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .panel.is-active{flex-grow:1;cursor:default}
 .panel-bg{position:absolute;inset:0;opacity:0;transition:opacity .9s var(--ease)}
 .panel-bg img{width:100%;height:100%;object-fit:cover}
-.panel-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.92) 34%,rgba(255,255,255,.2) 70%,rgba(255,255,255,0)),linear-gradient(#fff 0,rgba(255,255,255,0) 40%)}
+.panel-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.84) 26%,rgba(255,255,255,.1) 56%,rgba(255,255,255,0)),linear-gradient(#fff 0,rgba(255,255,255,0) 32%)}
 .panel.is-active .panel-bg{opacity:1}
 .panel-in{position:absolute;left:clamp(14px,1.8vw,28px);bottom:10vh;display:flex;align-items:flex-end;gap:clamp(16px,2vw,30px);width:max-content}
 .num{font-size:clamp(170px,36vh,380px);font-weight:600;line-height:.74;letter-spacing:-.07em}
@@ -428,6 +439,9 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .stats{height:auto;min-height:100vh;padding:110px 0 300px}
   .tree-wrap{bottom:0}
   .band{display:none}
+  .os{grid-template-columns:1fr 1fr;grid-auto-rows:44vw}
+  .os1{grid-column:span 2;grid-row:span 1}
+  .os2,.os3,.os4,.os5{grid-column:span 1;grid-row:span 1}
   .hygge-grid,.home-stage,.plan-grid,.loc-grid,.makers-grid,.outdoor,.up-grid{grid-template-columns:1fr}
   .up-view{height:auto;aspect-ratio:1}
   .up-key img{max-height:300px}
@@ -449,7 +463,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .brand img{height:26px}
   .hero{min-height:100svh}
   .hero-frame{min-height:560px}
-  .hero-frame video{object-position:30% 50%}
+  .hero-frame video{object-position:50% 40%}
   .hero-shade{background:linear-gradient(to top,rgba(28,14,6,.82) 0%,rgba(28,14,6,.55) 34%,rgba(28,14,6,0) 62%),linear-gradient(to bottom,rgba(255,255,255,.3) 0%,rgba(255,255,255,0) 16%)}
   .hero-copy{left:20px;right:20px;bottom:24px;width:auto;gap:14px}
   #heroTitle{font-size:clamp(34px,10vw,44px)}
@@ -520,7 +534,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-frame">
-      <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/media/hero-terrace-poster.jpg" src="assets/media/hero-terrace.mp4"></video>
+      <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/photos/hero-film-poster.jpg"><source media="(max-aspect-ratio: 1/1)" src="assets/photos/hero-film-tall.mp4" type="video/mp4"><source src="assets/photos/hero-film-wide.mp4" type="video/mp4"></video>
       <div class="hero-shade"></div>
       <div class="hero-copy">
         <span class="pill hot hero-pill"><i></i>Ready to move in</span>
@@ -534,13 +548,28 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     </div>
   </section>
 
+  <!-- ON SITE -->
+  <section class="sec" id="onsite">
+    <div class="sec-head">
+      <span class="pill reveal"><i></i>Photographed on site, September 2026</span>
+      <h2 class="h2 split">No renders here.<br>Just homes, <em>ready.</em></h2>
+    </div>
+    <div class="os reveal" id="os">
+      <figure class="os1"><img src="assets/photos/night.jpg" alt="Row of brick homes at Saffron Skies lit up at night" loading="lazy"><figcaption><span>After dark</span></figcaption></figure>
+      <figure class="os2"><img src="assets/photos/lawn.jpg" alt="Terraced lawn with stepped seating between the homes" loading="lazy"><figcaption><span>Terraced lawn</span></figcaption></figure>
+      <figure class="os3"><img src="assets/photos/garden.jpg" alt="Curved paved garden path with flowering beds" loading="lazy"><figcaption><span>Garden court</span></figcaption></figure>
+      <figure class="os4"><img src="assets/photos/gate.jpg" alt="Saffron Skies main entrance gate" loading="lazy"><figcaption><span>Main gate</span></figcaption></figure>
+      <figure class="os5"><img src="assets/photos/walk.jpg" alt="Landscaped stepping-stone walkway beside the homes" loading="lazy"><figcaption><span>Landscaped walkway</span></figcaption></figure>
+    </div>
+  </section>
+
   <!-- STATS -->
   <section class="stats" id="stats">
     <div class="sq-field" data-count="22"></div>
     <div class="tree-wrap"><img id="tree" src="assets/petalyx/tree.webp" alt=""></div>
     <div class="stats-inner">
       <span class="pill reveal"><i></i>Only 81 families, just like old times</span>
-      <h2 class="h2 center split" style="margin-bottom:18px">A low-rise village,<br>none taller than the <em>trees.</em></h2>
+      <h2 class="h2 center split" style="margin-bottom:18px">A low-rise community,<br>home to just 81 <em>families.</em></h2>
       <div class="cards">
         <div class="card ticket"><small>Families, and no more</small><b data-to="81" data-dec="0" data-suf="">0</b></div>
         <div class="card ticket"><small>Acres of landscape</small><b data-to="3.9" data-dec="1" data-suf="">0</b></div>
@@ -572,8 +601,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
         <div class="say reveal"><b>Hygge</b> /ˈhuː.ɡə/ — the Danish art of cosiness, contentment and togetherness.</div>
       </div>
       <figure class="hygge-frame" id="hyggeFrame">
-        <img src="assets/renders/ext-cam6-center-landscape.jpg" alt="Central landscape court between the villas at Saffron Skies" loading="lazy">
-        <figcaption><span class="pill">Central landscape court</span></figcaption>
+        <img src="assets/photos/path-tall.jpg" alt="Stepping-stone garden path running between the homes" loading="lazy">
+        <figcaption><span class="pill">On site</span></figcaption>
       </figure>
     </div>
   </section>
@@ -589,11 +618,11 @@ body.intro #app{transform:scale(.9);border-radius:28px}
         <p class="lede reveal">Every decision at Saffron Skies, from the brick on the façade to the fruit trees on the path, comes back to one of five ideas.</p>
       </div>
       <div class="ways-track" id="waysTrack">
-        <article class="way"><div class="way-img"><img src="assets/renders/ext-cam1-villa.jpg" alt="Brick-clad row villas with planted terraces" loading="lazy"></div><div class="way-body"><b>01</b><h3>Earthy</h3><p>Grow your own vegetables. Kota stone underfoot, brick façades turned east and north, courtyards and skylights that let the day in.</p></div></article>
-        <article class="way"><div class="way-img"><img src="assets/renders/ext-cam3-yoga.jpg" alt="Residents on the yoga lawn" loading="lazy"></div><div class="way-body"><b>02</b><h3>Active</h3><p>A jogging track along the boundary, outdoor gym, basketball court, podium yoga lawn and a three-storey clubhouse with pool.</p></div></article>
-        <article class="way"><div class="way-img"><img src="assets/renders/int-family.jpg" alt="Double-height family living with brick wall and Kota stair" loading="lazy"></div><div class="way-body"><b>03</b><h3>Level</h3><p>Four levels, four moods: social, culinary, relaxation, and a private master suite with its own 400 sq.ft. terrace.</p></div></article>
-        <article class="way"><div class="way-img"><img src="assets/renders/ext-cam4-landscape.jpg" alt="Aerial view of the landscaped party lawn" loading="lazy"></div><div class="way-body"><b>04</b><h3>Sustainable</h3><p>EV charging for every home, a 1 lakh litre rainwater tank, groundwater recharge, solar common lighting and on-site greywater treatment.</p></div></article>
-        <article class="way"><div class="way-img"><img src="assets/renders/ext-cam7-driveway.jpg" alt="Neighbours meeting along the tree-lined driveway" loading="lazy"></div><div class="way-body"><b>05</b><h3>Community</h3><p>Only 81 families. Verandahs, reading nooks, bistros, tree courts, forest walkways and a temple — a neighbourhood, not a tower.</p></div></article>
+        <article class="way"><div class="way-img"><img src="assets/photos/green.jpg" alt="Homes behind planted beds and greenery" loading="lazy"></div><div class="way-body"><b>01</b><h3>Earthy</h3><p>Grow your own vegetables. Kota stone underfoot, brick façades turned east and north, courtyards and skylights that let the day in.</p></div></article>
+        <article class="way"><div class="way-img"><img src="assets/photos/lawn.jpg" alt="Terraced lawn with stepped seating" loading="lazy"></div><div class="way-body"><b>02</b><h3>Active</h3><p>A jogging track along the boundary, outdoor gym, basketball court, podium yoga lawn and a three-storey clubhouse with pool.</p></div></article>
+        <article class="way"><div class="way-img"><img src="assets/photos/int-double-height.jpg" alt="Double-height living room in the model villa" loading="lazy"></div><div class="way-body"><b>03</b><h3>Level</h3><p>Four levels, four moods: social, culinary, relaxation, and a private master suite with its own 400 sq.ft. terrace.</p></div></article>
+        <article class="way"><div class="way-img"><img src="assets/photos/garden.jpg" alt="Planted garden court with paved path" loading="lazy"></div><div class="way-body"><b>04</b><h3>Sustainable</h3><p>EV charging for every home, a 1 lakh litre rainwater tank, groundwater recharge, solar common lighting and on-site greywater treatment.</p></div></article>
+        <article class="way"><div class="way-img"><img src="assets/photos/banners.jpg" alt="Community living banners beside a lawn" loading="lazy"></div><div class="way-body"><b>05</b><h3>Community</h3><p>Only 81 families. Verandahs, reading nooks, bistros, tree courts, forest walkways and a temple — a neighbourhood, not a tower.</p></div></article>
       </div>
       <div class="ways-bar"><i id="waysBar"></i></div>
     </div>
@@ -614,7 +643,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
       <div class="home-media">
         <span class="pill tag" id="homeTag">Luxury row villas</span>
         <span class="pill hot tag-r"><i></i>Ready to move in</span>
-        <img class="on" src="assets/renders/ext-cam1-villa.jpg" alt="4-bed row villas with brick façades" loading="lazy">
+        <img class="on" src="assets/photos/facade.jpg" alt="Row of brick-faced homes with planted balconies" loading="lazy">
         <img src="assets/renders/ext-cam8-villament.jpg" alt="Villament block with terraces and gardens" loading="lazy">
       </div>
       <div class="home-info">
@@ -707,39 +736,39 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     <div class="lvl-dots" id="lvlDots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="track" id="track">
       <div class="panel is-active" tabindex="0" aria-label="Level 1: Social">
-        <div class="panel-bg"><img src="assets/renders/int-dining-to-family.jpg" alt="" loading="lazy"></div>
+        <div class="panel-bg"><img src="assets/photos/int-living.jpg" alt="" loading="lazy"></div>
         <div class="panel-in"><div class="num">1</div><div class="step">
           <img class="mini-cloud" src="assets/petalyx/cloud-b.webp" alt="">
           <small>Level one · Social</small><h3>Open to the garden</h3>
           <p>Double-height living that steps straight out onto your private garden. Where guests arrive and evenings begin.</p>
-          <img class="lvl-thumb" src="assets/renders/int-dining-to-family.jpg" alt="Double-height living" loading="lazy">
+          <img class="lvl-thumb" src="assets/photos/int-living.jpg" alt="Living room in the model villa" loading="lazy">
         </div></div>
       </div>
       <div class="panel" tabindex="0" aria-label="Level 2: Culinary">
-        <div class="panel-bg"><img src="assets/renders/int-dining.jpg" alt="" loading="lazy"></div>
+        <div class="panel-bg"><img src="assets/photos/int-dining.jpg" alt="" loading="lazy"></div>
         <div class="panel-in"><div class="num">2</div><div class="step">
           <img class="mini-cloud" src="assets/petalyx/cloud-a.webp" alt="">
           <small>Level two · Culinary</small><h3>The heart of the home</h3>
           <p>Kitchen, dining and the parents’ room on one floor, so the people who cook and the people who matter are never far apart.</p>
-          <img class="lvl-thumb" src="assets/renders/int-dining.jpg" alt="Dining against a brick wall" loading="lazy">
+          <img class="lvl-thumb" src="assets/photos/int-dining.jpg" alt="Dining against a brick wall in the model villa" loading="lazy">
         </div></div>
       </div>
       <div class="panel" tabindex="0" aria-label="Level 3: Relaxation">
-        <div class="panel-bg"><img src="assets/renders/int-bedroom-2.jpg" alt="" loading="lazy"></div>
+        <div class="panel-bg"><img src="assets/photos/int-bedroom.jpg" alt="" loading="lazy"></div>
         <div class="panel-in"><div class="num">3</div><div class="step">
           <img class="mini-cloud" src="assets/petalyx/cloud-b.webp" alt="">
           <small>Level three · Relaxation</small><h3>A floor to unwind</h3>
           <p>Two bedrooms and a secondary family living, a level away from the day’s comings and goings.</p>
-          <img class="lvl-thumb" src="assets/renders/int-bedroom-2.jpg" alt="Bedroom with garden view" loading="lazy">
+          <img class="lvl-thumb" src="assets/photos/int-bedroom.jpg" alt="Bedroom in the model villa" loading="lazy">
         </div></div>
       </div>
       <div class="panel" tabindex="0" aria-label="Level 4: Private">
-        <div class="panel-bg"><img src="assets/renders/int-bedroom-1.jpg" alt="" loading="lazy"></div>
+        <div class="panel-bg"><img src="assets/photos/int-master.jpg" alt="" loading="lazy"></div>
         <div class="panel-in"><div class="num">4</div><div class="step">
           <img class="mini-cloud" src="assets/petalyx/cloud-a.webp" alt="">
           <small>Level four · Private</small><h3>Your own sky</h3>
           <p>The master suite and its terrace, all to themselves. Coffee at sunrise, stars at night.</p>
-          <img class="lvl-thumb" src="assets/renders/int-bedroom-1.jpg" alt="Master suite" loading="lazy">
+          <img class="lvl-thumb" src="assets/photos/int-master.jpg" alt="Master suite in the model villa" loading="lazy">
         </div></div>
       </div>
     </div>
@@ -754,29 +783,29 @@ body.intro #app{transform:scale(.9);border-radius:28px}
       </div>
       <div class="chips reveal" id="chips">
         <button class="chip on" data-f="all">All</button>
-        <button class="chip" data-f="ext">Outside</button>
-        <button class="chip" data-f="int">Inside</button>
+        <button class="chip" data-f="ext">On site</button>
         <button class="chip" data-f="model">Model villa</button>
       </div>
     </div>
     <div class="strip" id="strip">
-      <figure class="shot" data-c="ext"><img src="assets/renders/ext-cam2-entry.jpg" alt="Main entrance and clubhouse" loading="lazy"><figcaption><span>Arrival</span></figcaption></figure>
-      <figure class="shot" data-c="int"><img src="assets/renders/int-family.jpg" alt="Family living" loading="lazy"><figcaption><span>Family living</span></figcaption></figure>
-      <figure class="shot" data-c="ext"><img src="assets/renders/ext-cam8-villament.jpg" alt="Villament block" loading="lazy"><figcaption><span>Villaments</span></figcaption></figure>
-      <figure class="shot sq" data-c="model"><img src="assets/grc/gallery-1-lg.webp" alt="Model villa dining" loading="lazy"><figcaption><span>Model villa · dining</span></figcaption></figure>
-      <figure class="shot" data-c="int"><img src="assets/renders/int-upper-living-court.jpg" alt="Upper living court with tree" loading="lazy"><figcaption><span>Upper living court</span></figcaption></figure>
-      <figure class="shot" data-c="ext"><img src="assets/renders/ext-cam3-yoga.jpg" alt="Yoga lawn" loading="lazy"><figcaption><span>Yoga lawn</span></figcaption></figure>
-      <figure class="shot" data-c="int"><img src="assets/renders/int-dining.jpg" alt="Dining" loading="lazy"><figcaption><span>Dining</span></figcaption></figure>
-      <figure class="shot sq" data-c="model"><img src="assets/grc/gallery-2-lg.webp" alt="Model villa living" loading="lazy"><figcaption><span>Model villa · living</span></figcaption></figure>
-      <figure class="shot" data-c="ext"><img src="assets/renders/ext-cam6-center-landscape.jpg" alt="Central landscape" loading="lazy"><figcaption><span>Central landscape</span></figcaption></figure>
-      <figure class="shot" data-c="int"><img src="assets/renders/int-bedroom-1.jpg" alt="Master bedroom" loading="lazy"><figcaption><span>Master suite</span></figcaption></figure>
-      <figure class="shot sq" data-c="model"><img src="assets/grc/gallery-3-lg.webp" alt="Model villa kitchen" loading="lazy"><figcaption><span>Model villa · kitchen</span></figcaption></figure>
-      <figure class="shot" data-c="ext"><img src="assets/renders/ext-cam4-landscape.jpg" alt="Aerial party lawn" loading="lazy"><figcaption><span>Party lawn</span></figcaption></figure>
-      <figure class="shot" data-c="int"><img src="assets/renders/int-dining-to-family.jpg" alt="Dining to family" loading="lazy"><figcaption><span>Dining to family</span></figcaption></figure>
-      <figure class="shot sq" data-c="model"><img src="assets/grc/gallery-4-lg.webp" alt="Model villa bedroom" loading="lazy"><figcaption><span>Model villa · bedroom</span></figcaption></figure>
-      <figure class="shot" data-c="ext"><img src="assets/renders/ext-cam7-driveway.jpg" alt="Driveway" loading="lazy"><figcaption><span>Driveway</span></figcaption></figure>
-      <figure class="shot" data-c="int"><img src="assets/renders/int-bedroom-2.jpg" alt="Bedroom" loading="lazy"><figcaption><span>Bedroom</span></figcaption></figure>
-      <figure class="shot sq" data-c="model"><img src="assets/grc/gallery-5-lg.webp" alt="Model villa powder room" loading="lazy"><figcaption><span>Model villa · powder</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/facade.jpg" alt="Brick-faced homes with planted balconies" loading="lazy"><figcaption><span>Brick and greenery</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-living.jpg" alt="Model villa living room" loading="lazy"><figcaption><span>Living</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/night.jpg" alt="Homes lit up at night" loading="lazy"><figcaption><span>After dark</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-dining.jpg" alt="Model villa dining against brick" loading="lazy"><figcaption><span>Dining</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/banners.jpg" alt="Community living banners by a lawn" loading="lazy"><figcaption><span>Community lawn</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-double-height.jpg" alt="Double-height living room" loading="lazy"><figcaption><span>Double-height living</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/court.jpg" alt="Planted walkway between homes" loading="lazy"><figcaption><span>Planted walkway</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-master.jpg" alt="Master bedroom with four-poster bed" loading="lazy"><figcaption><span>Master suite</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/lawn.jpg" alt="Terraced lawn with stepped seating" loading="lazy"><figcaption><span>Terraced lawn</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-stairs.jpg" alt="Staircase with a Buddha niche" loading="lazy"><figcaption><span>Staircase</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/lane.jpg" alt="Paved lane with planting" loading="lazy"><figcaption><span>Paved lane</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-bedroom.jpg" alt="Model villa bedroom" loading="lazy"><figcaption><span>Bedroom</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/block.jpg" alt="Row of brick and grey homes" loading="lazy"><figcaption><span>The homes</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-wardrobes.jpg" alt="Teak-finish wardrobes" loading="lazy"><figcaption><span>Wardrobes</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/green.jpg" alt="Homes behind tropical planting" loading="lazy"><figcaption><span>Tropical planting</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-study.jpg" alt="Study corner" loading="lazy"><figcaption><span>Study corner</span></figcaption></figure>
+      <figure class="shot" data-c="ext"><img src="assets/photos/gate.jpg" alt="Main entrance gate" loading="lazy"><figcaption><span>Main gate</span></figcaption></figure>
+      <figure class="shot sq" data-c="model"><img src="assets/photos/int-buddha.jpg" alt="Buddha niche" loading="lazy"><figcaption><span>Buddha niche</span></figcaption></figure>
     </div>
     <div class="gal-progress"><i id="galBar"></i></div>
   </section>
@@ -839,7 +868,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
       <h2 class="h2 split">Three storeys of club,<br>3.9 acres of <em>play.</em></h2>
     </div>
     <div class="club-hero" id="clubHero">
-      <img src="assets/renders/ext-cam2-entry.jpg" alt="The clubhouse at the entrance of Saffron Skies" loading="lazy">
+      <img src="assets/photos/gate.jpg" alt="The main entrance of Saffron Skies" loading="lazy">
       <span class="glass" style="left:6%;top:12%"></span><span class="glass" style="left:11%;top:22%"></span><span class="glass" style="left:6%;top:32%"></span>
       <div class="club-card">
         <span class="pill"><i></i>The clubhouse</span>
@@ -976,7 +1005,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   <!-- CTA -->
   <section class="cta" id="cta">
     <div class="sq-field" data-count="16"></div>
-    <div class="cta-img"><img id="ctaImg" alt="Brick-clad villas at Saffron Skies at golden hour" src="assets/renders/ext-cam1-villa.jpg" loading="lazy"></div>
+    <div class="cta-img"><img id="ctaImg" alt="Finished brick homes at Saffron Skies" src="assets/photos/block.jpg" loading="lazy"></div>
     <div class="cloud cta-cloud-l"><img class="drift-a" src="assets/petalyx/cloud-a.webp" alt=""></div>
     <div class="cloud cta-cloud-r"><img class="drift-b" src="assets/petalyx/cloud-b.webp" alt=""></div>
     <div class="petals" id="petals"></div>
@@ -1003,7 +1032,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
       <div class="f-col"><h4>Talk to us</h4><a href="tel:+918884471111">+91 888 447 1111</a><a href="tel:+917090326326">+91 7090 326 326</a><a href="mailto:sales@grcinfra.com">sales@grcinfra.com</a><a href="https://www.grcinfra.com/projects/saffronskies/" target="_blank" rel="noopener">grcinfra.com</a></div>
     </div>
     <div class="f-bot">
-      <div class="f-legal">RERA No. PRM/KA/RERA/1251/310/PR/220623/006016 · BDA approved · Images are artistic impressions and for representation only. Specifications and areas are indicative and subject to change.<br>© 2026 GRC Group Builders &amp; Developers</div>
+      <div class="f-legal">RERA No. PRM/KA/RERA/1251/310/PR/220623/006016 · BDA approved · Exterior photographs were taken on site in September 2026. Interiors show the furnished model villa; furniture and decor are for display. The image marked as an artist’s impression is for representation only. Specifications and areas are indicative and subject to change.<br>© 2026 GRC Group Builders &amp; Developers</div>
       <img src="assets/brand/grc-group-logo-maroon.png" alt="GRC Group">
     </div>
   </footer>
@@ -1095,7 +1124,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   });
 
   /* HOMES switch */
-  var hBtns=$$('#switch button'), knob=$('#knob'), hImgs=$$('.home-media img'), hPanels=$$('.home-panel'), tags=['Luxury row villas','Villaments'];
+  var hBtns=$$('#switch button'), knob=$('#knob'), hImgs=$$('.home-media img'), hPanels=$$('.home-panel'), tags=['Luxury row villas','Villaments, artist’s impression'];
   function setKnob(b){ knob.style.width=b.offsetWidth+'px'; knob.style.transform='translateX('+(b.offsetLeft-4)+'px)'; }
   hBtns.forEach(function(b,i){
     b.addEventListener('click',function(){
@@ -1208,6 +1237,9 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     });
   });
   galProgress();
+
+  var osShots=$$('#os figure');
+  osShots.forEach(function(fg,i){ fg.addEventListener('click',function(){ lbOpen(osShots.map(function(x){ return {src:$('img',x).src,cap:$('span',x).textContent}; }),i); }); });
 
   /* MASTER PLAN legend + markers */
   var PL=[
