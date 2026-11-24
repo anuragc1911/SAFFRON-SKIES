@@ -235,6 +235,11 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .mat-media{position:relative;aspect-ratio:1;max-height:76vh;width:100%;border-radius:28px;overflow:hidden;background:#dcd7d3}
 .mat-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .mat-media .role{position:absolute;left:18px;top:18px;z-index:2;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.mat-media{cursor:zoom-in}
+.mat-media:focus-visible{outline:3px solid var(--saffron);outline-offset:3px}
+.mat-open{position:absolute;right:18px;bottom:18px;z-index:2;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.88);transition:background .3s}
+.mat-open svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mat-media:hover .mat-open{background:var(--saffron)}
 .mat-copy{border-radius:28px;background:#faf7f2;padding:clamp(28px,3.4vw,52px);display:flex;flex-direction:column;justify-content:space-between;gap:32px}
 .mat-copy .idx{font-size:13px;font-weight:600;color:var(--saffron);font-variant-numeric:tabular-nums}
 .mat-copy h3{font-size:clamp(38px,4.6vw,72px);font-weight:500;letter-spacing:-.05em;line-height:.95;margin:14px 0 18px}
@@ -409,7 +414,7 @@ body.intro #app{transform:scale(.9);border-radius:28px}
 .lb-x{top:20px;right:20px}
 .lb-p{left:20px;top:50%;margin-top:-23px}
 .lb-n{right:20px;top:50%;margin-top:-23px}
-.lb.is-video .lb-p,.lb.is-video .lb-n{display:none}
+.lb.one .lb-p,.lb.one .lb-n{display:none}
 .lb-stage video{display:block;max-width:100%;max-height:min(82vh,900px);border-radius:14px;background:#000;box-shadow:0 40px 100px rgba(0,0,0,.5)}
 
 @media (max-width:1100px){
@@ -461,6 +466,8 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   .hero-ctas .film-btn{padding-left:6px}
   .cta-cloud-l{width:64vw;left:-18vw;top:0}
   .cta-cloud-r{width:58vw;right:-20vw;top:3%}
+  .lb-p,.lb-n{top:auto;bottom:12px;margin:0}
+  .lb-cap{bottom:26px;max-width:calc(100% - 152px);overflow:hidden;text-overflow:ellipsis}
   .lb-stage.pan{overflow:auto;place-items:center start;-webkit-overflow-scrolling:touch}
   .lb-stage.pan img{max-width:none;max-height:none;height:min(82svh,900px);width:auto}
   .rings .dest text{font-size:22px}
@@ -758,9 +765,9 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     </div>
     <div class="mat-stack">
       <article class="mat">
-        <div class="mat-media">
+        <div class="mat-media" role="button" tabindex="0" aria-label="View Brick cladding closer">
           <video autoplay muted loop playsinline preload="metadata" src="assets/media/material-brick-turntable.mp4"></video>
-          <span class="pill role">The façade</span>
+          <span class="pill role">The façade</span><span class="mat-open" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></span>
         </div>
         <div class="mat-copy">
           <div><span class="idx">01</span><h3>Brick cladding</h3>
@@ -769,9 +776,9 @@ body.intro #app{transform:scale(.9);border-radius:28px}
         </div>
       </article>
       <article class="mat flip">
-        <div class="mat-media">
+        <div class="mat-media" role="button" tabindex="0" aria-label="View Kota stone closer">
           <video autoplay muted loop playsinline preload="metadata" src="assets/media/material-kota-turntable.mp4"></video>
-          <span class="pill role">The floor</span>
+          <span class="pill role">The floor</span><span class="mat-open" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></span>
         </div>
         <div class="mat-copy">
           <div><span class="idx">02</span><h3>Kota stone</h3>
@@ -1063,15 +1070,27 @@ body.intro #app{transform:scale(.9);border-radius:28px}
   document.fonts && document.fonts.ready.then(function(){ setKnob($('#switch button.on')); });
 
   /* LIGHTBOX */
-  var lb=$('#lb'), lbStage=$('#lbStage'), lbCap=$('#lbCap'), lbList=[], lbI=0;
-  function lbShow(){ var it=lbList[lbI]; lbStage.classList.toggle('pan',!!it.pan); lbStage.scrollLeft=0; lbStage.innerHTML='<img src="'+it.src+'" alt="">'; lbStage.firstChild.alt=it.cap; lbCap.textContent=it.cap+(lbList.length>1?'  ·  '+(lbI+1)+' / '+lbList.length:''); gsap.fromTo(lbStage.firstChild,{opacity:0,scale:.97},{opacity:1,scale:1,duration:.5,ease:'power3.out'}); }
-  function lbOpen(list,i){ lbList=list; lbI=i; lb.classList.remove('is-video'); lbShow(); lb.classList.add('on'); lenis.stop(); }
-  function filmOpen(){ var inl=$('#tourV'); if(inl) inl.pause(); lb.classList.add('is-video'); lbStage.classList.remove('pan'); lbStage.innerHTML='<video src="assets/media/saffron-skies-tour.mp4" poster="assets/media/saffron-skies-tour-poster.jpg" controls autoplay playsinline></video>'; lbCap.textContent='The Saffron Skies tour'; lb.classList.add('on'); lenis.stop(); }
-  function lbClose(){ lb.classList.remove('on'); setTimeout(function(){ lbStage.innerHTML=''; },400); lenis.start(); }
+  var lb=$('#lb'), lbStage=$('#lbStage'), lbCap=$('#lbCap'), lbList=[], lbI=0, lbT=0;
+  function lbShow(){
+    var it=lbList[lbI], vid=!!it.video, el;
+    lb.classList.toggle('is-video',vid); lb.classList.toggle('one',lbList.length<2);
+    lbStage.classList.toggle('pan',!!it.pan); lbStage.scrollLeft=0; lbStage.innerHTML='';
+    if(vid){
+      el=document.createElement('video'); el.src=it.video; if(it.poster) el.poster=it.poster;
+      el.playsInline=true; el.setAttribute('playsinline',''); el.controls=!it.loop; el.loop=!!it.loop; el.muted=!!it.loop;
+    } else { el=document.createElement('img'); el.src=it.src; el.alt=it.cap; }
+    lbStage.appendChild(el);
+    if(vid){ var pr=el.play(); if(pr) pr.catch(function(){ el.muted=true; var r=el.play(); if(r) r.catch(function(){}); }); }
+    lbCap.textContent=it.cap+(lbList.length>1?'  ·  '+(lbI+1)+' / '+lbList.length:'');
+    gsap.fromTo(el,{opacity:0,scale:.97},{opacity:1,scale:1,duration:.5,ease:'power3.out'});
+  }
+  function lbOpen(list,i){ lbList=list; lbI=i; clearTimeout(lbT); lbShow(); lb.classList.add('on'); lenis.stop(); }
+  function filmOpen(){ var inl=$('#tourV'); if(inl) inl.pause(); lbOpen([{video:'assets/media/saffron-skies-tour.mp4',poster:'assets/media/saffron-skies-tour-poster.jpg',cap:'The Saffron Skies tour'}],0); }
+  function lbClose(){ lb.classList.remove('on'); var v=$('video',lbStage); if(v) v.pause(); lbT=setTimeout(function(){ lbStage.innerHTML=''; },400); lenis.start(); }
   $('#lbX').onclick=lbClose; lb.addEventListener('click',function(e){ if(e.target===lb||e.target===lbStage) lbClose(); });
   $('#lbP').onclick=function(){ lbI=(lbI-1+lbList.length)%lbList.length; lbShow(); };
   $('#lbN').onclick=function(){ lbI=(lbI+1)%lbList.length; lbShow(); };
-  addEventListener('keydown',function(e){ if(!lb.classList.contains('on')) return; if(e.key==='Escape') lbClose(); if(lb.classList.contains('is-video')) return; if(e.key==='ArrowLeft') $('#lbP').click(); if(e.key==='ArrowRight') $('#lbN').click(); });
+  addEventListener('keydown',function(e){ if(!lb.classList.contains('on')) return; if(e.key==='Escape') lbClose(); if($('video[controls]',lbStage)||lbList.length<2) return; if(e.key==='ArrowLeft') $('#lbP').click(); if(e.key==='ArrowRight') $('#lbN').click(); });
   $$('[data-tour]').forEach(function(b){ b.addEventListener('click',filmOpen); });
   $('#planZoom').addEventListener('click',function(){ lbOpen([{src:'assets/renders/masterplan.jpg',cap:'Master plan'}],0); });
 
@@ -1219,16 +1238,16 @@ body.intro #app{transform:scale(.9);border-radius:28px}
     });
   });
 
-  /* VOICES: tap to expand full-screen with sound */
-  $$('.v-card').forEach(function(card){
-    var v=$('video',card);
-    card.addEventListener('click',function(){
-      v.muted=false; v.currentTime=0; v.play();
-      if(v.requestFullscreen) v.requestFullscreen(); else if(v.webkitEnterFullscreen) v.webkitEnterFullscreen(); else if(v.webkitRequestFullscreen) v.webkitRequestFullscreen();
+  /* VOICES and MATERIALS: tap to open in the viewer */
+  function opens(els,item){
+    els.forEach(function(el,i){
+      function go(){ lbOpen(els.map(item),i); }
+      el.addEventListener('click',go);
+      if(el.tagName!=='BUTTON') el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
     });
-    function restore(){ if(!document.fullscreenElement && !document.webkitFullscreenElement){ v.muted=true; } }
-    document.addEventListener('fullscreenchange',restore); v.addEventListener('webkitendfullscreen',restore);
-  });
+  }
+  opens($$('.v-card'),function(c){ var v=$('video',c); return {video:v.getAttribute('src'),poster:v.getAttribute('poster'),cap:'Resident film'}; });
+  opens($$('.mat-media'),function(m){ return {video:$('video',m).getAttribute('src'),loop:true,cap:$('h3',m.parentNode).textContent}; });
 
   /* number formatting */
   function fmt(n,mode){ n=Math.round(n); if(mode==='in'){ var s=String(n), last=s.slice(-3), rest=s.slice(0,-3); return rest?rest.replace(/\B(?=(\d{2})+(?!\d))/g,',')+','+last:last; } return String(n); }
