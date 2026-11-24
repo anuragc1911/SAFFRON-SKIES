@@ -12,37 +12,34 @@ def sat_of(a):
     return a.max(axis=2) - a.min(axis=2)
 
 
-def sky_mask(im, tsat=.075):
-    w, h = im.size; k = 700 / max(w, h)
-    s = np.asarray(im.resize((int(w * k), int(h * k)), Image.BILINEAR)).astype(np.float32) / 255
-    # the sky is the brightest neutral area in the frame: key off the photo's own white, so pale walls stay out
-    mn = s.min(axis=2); ref = np.percentile(mn[: max(4, s.shape[0] // 3)], 97)
-    m = Image.fromarray(((mn > max(.74, ref - .085)) & (sat_of(s) < tsat)).astype(np.uint8) * 255)
-    # close thin gaps such as cables, then keep only what connects to the top edge
-    m = m.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
-    f = m.copy()
-    for x in range(0, f.width, 4):
+def sky_mask(a):
+    """0..1 weight. Bright, neutral pixels that belong to the region touching the top edge.
+    Continuous in brightness, so rooflines and leaves keep their own anti-aliasing."""
+    h, w, _ = a.shape; mn = a.min(axis=2); s = sat_of(a)
+    lo, hi = .70, .86
+    u = np.clip((mn - lo) / (hi - lo), 0, 1); bright = u * u * (3 - 2 * u)
+    v = np.clip((.16 - s) / .08, 0, 1); weight = bright * v
+    # region test at low resolution: only areas connected to the top count
+    k = 500 / max(w, h); sm = Image.fromarray((weight * 255).astype(np.uint8)).resize((int(w * k), int(h * k)), Image.BILINEAR)
+    m = sm.point(lambda p: 255 if p > 190 else 0); f = m.copy()
+    for x in range(0, f.width, 3):
         if f.getpixel((x, 0)) == 255:
             ImageDraw.floodfill(f, (x, 0), 128)
-    a = np.asarray(f) == 128
-    out = Image.fromarray((a * 255).astype(np.uint8)).resize((w, h), Image.BILINEAR).filter(ImageFilter.GaussianBlur(max(w, h) * .0022))
-    return np.asarray(out).astype(np.float32) / 255
+    reg = f.point(lambda p: 255 if p == 128 else 0).filter(ImageFilter.MaxFilter(5)).resize((w, h), Image.BILINEAR)
+    return weight * (np.asarray(reg).astype(np.float32) / 255)
 
 
 def grade(im, sky=True, night=False):
     a = np.asarray(im).astype(np.float32) / 255; h, w, _ = a.shape
     if sky and not night:
-        m = sky_mask(im)[..., None]
+        m = sky_mask(a)[..., None].astype(np.float32)
         if m.mean() > .002:
             ys = np.linspace(0, 1, h, dtype=np.float32)[:, None, None]
-            rows = np.nonzero(m[..., 0].max(axis=1) > .5)[0]
-            bottom = (rows.max() + 1) / h if len(rows) else 1
-            u = np.clip(ys / max(bottom, .05), 0, 1)
-            top, mid, low = np.array([.50, .66, .84], np.float32), np.array([.74, .83, .91], np.float32), np.array([.98, .91, .82], np.float32)
-            g = np.where(u < .55, top + (mid - top) * (u / .55), mid + (low - mid) * ((u - .55) / .45))
-            lum = a.mean(axis=2, keepdims=True); base = np.median(lum[m[..., 0] > .5]) if (m > .5).any() else .9
-            tex = np.clip(1 + (lum - base) * 1.2, .7, 1.12)   # keep cloud texture; cables stay dark
-            a = a * (1 - m) + np.clip(g * tex, 0, 1) * m
+            rows = np.nonzero((m[..., 0] > .6).mean(axis=1) > .02)[0]
+            u = np.clip(ys / max((rows.max() + 1) / h if len(rows) else 1, .05), 0, 1)
+            top, low = np.array([.66, .80, .95], np.float32), np.array([1., .95, .88], np.float32)
+            # multiply keeps the real clouds and every edge; it only tints the white
+            a = a * (1 - m + m * (top + (low - top) * u))
     else:
         m = np.zeros((h, w, 1), np.float32)
     # warm white balance on everything that is not sky

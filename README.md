@@ -5,7 +5,7 @@ Single-file site (`index.html`, inline CSS/JS, GSAP 3.12.5 + ScrollTrigger + Len
 Design language: Petalyx (intro zoom, drifting clouds, word-blur reveals, flickering glass squares, pinned counters with a rising tree, hover accordion, glass CTA card with falling petals) — re-skinned in the Saffron Skies brand: saffron `#F58400`, maroon `#551913`, rust `#B5502A`, sand `#EFC98F` on the original `#e9eee0` / white backgrounds. No italics in UI type (the logo's italic “skies” is the brand mark itself).
 
 ## Sections
-Hero (terrace film, “Watch the film” → YouTube) · Stats (81 / 3.9 / 180+ / 500, pinned) · Hygge (scroll-filled text, opening frame) · Five ways of living (pinned horizontal scroll) · Homes (villas ⇄ villaments switch) · Level living (4-level accordion) · Gallery (filters, drag, lightbox) · Materials (brick & Kota turntables) · Sustainability · Clubhouse & outdoors · Interactive master plan (legend ⇄ hotspots) · Residents (tap for full-screen with sound) · Location (drive-time rings) · Makers (GRC + Architecture Paradigm) · Specifications (accordion) · CTA · Footer (RERA)
+Hero (terrace film, “Watch the film” → YouTube) · Stats (81 / 3.9 / 180+ / 500, pinned) · Hygge (scroll-filled text, opening frame) · Five ways of living (pinned horizontal scroll) · Homes (villas ⇄ villaments switch) · Floor plans (one typical villa, one typical villament) · Specifications (accordion) · Gallery (filters, drag, lightbox) · Materials (brick & Kota turntables) · Sustainability · Clubhouse & outdoors · Interactive master plan (legend ⇄ hotspots) · Residents (tap for full-screen with sound) · Location (drive-time rings) · Makers (GRC + Architecture Paradigm) · CTA · Footer (RERA)
 
 ## Project facts (sources: official brochure + https://www.grcinfra.com/projects/saffronskies/)
 - **Concept:** a villa community inspired by the Hygge (“hoo-gah”) way of joyful, sustainable and splendid living — “undo. veer. embrace.”
@@ -23,7 +23,7 @@ Hero (terrace film, “Watch the film” → YouTube) · Stats (81 / 3.9 / 180+ 
 
 ## Assets
 - `assets/brand/` — Saffron Skies logo (dark + cream) and GRC Group mark (white + maroon), extracted from the official “Key to Happiness” artboard; original artboard kept as `key-to-happiness.png`
-- `assets/photos/` — real site photography (September 2026, graded with `motion/grade.py`), model-villa stills from the official reels, and the hero film (`hero-film-wide.mp4`, `hero-film-tall.mp4`): drone shots and close-ups from the reels and the night drone photo
+- `assets/photos/` — real site photography (September 2026, graded with `motion/grade.py`), model-villa stills from the official reels, and the hero film (`hero-film-wide.mp4`, `hero-film-tall.mp4`): moving drone and interior footage only, no stills
 - `assets/media/saffron-skies-tour.mp4` — presenter-led site tour (compressed from the original 146 MB WhatsApp file)
 - `assets/renders/` — official exterior (cam1–cam8) and interior renders, web-sized from the source TIF/JPGs; `masterplan.jpg` from the official master-plan PDF (printed legend removed — rebuilt as interactive HTML)
 - `assets/plans/` — unit plans cropped from the official PDFs (`*.webp`), site-location keys (`*-key.webp`) and the source PDFs (`pdf/`). Named by building and unit: `b4` Building 4, `b3a`/`b3b` Building 3 Unit A/B, `b2b`/`b2c` Building 2 Unit B/C, `b1a`/`b1b` Building 1 Unit A/B. Not supplied yet: A28 to A37, B101 to B116
